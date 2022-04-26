@@ -5,42 +5,53 @@ let pixelLength = 40;
 let darkeningFactor = 10;
 
 const body = document.querySelector("body");
-const pixelGrid = document.createElement("div");
-pixelGrid.id = "pixelgrid";
 const resetButton = document.createElement("button");
 resetButton.textContent = "reset";
+body.appendChild(resetButton);
+
+resetButton.addEventListener("click", () => {
+    deleteCurrentGrid();
+
+    let num = window.prompt("yo sexy");
+    num = parseFloat(num);
+
+    if(typeof num == "number")
+    {
+        if(num > 100)
+            {makeGrid(100);}
+        else
+            {makeGrid(num);}
+    }
+    else
+        {makeGrid();}
+});
+
+let pixelGrid;
 
 function getRandomRGB(additive = 0)
 {return "rgb(" + (Math.floor(Math.random()*255) + additive) + "," + 
                  (Math.floor(Math.random()*255) + additive) + "," +  
                  (Math.floor(Math.random()*255) + additive) + ")";}
 
-//let rowArr = [];
 let darkerArr = [];
-
 
 function deleteCurrentGrid()
 {
-    let pixel = document.querySelector("pixelgrid");
-    body.removeChild(pixel);
+    body.removeChild(pixelGrid);
 
-    // pixels.forEach((element) => {
-    //     body.removeChild(element);
-    // });
-}
-
-function reinitializeGrid(length)
-{
-    deleteCurrentGrid();
-    makeGrid(length);
+    pixelArr = Array.from(document.querySelectorAll("pixel"));
+    
+    pixelArr.forEach((element) => {
+        body.removeChild(element);
+    });
 }
 
 function makeGrid(squaresPerSide = 4)
 {
+    pixelGrid = document.createElement("div");
+    pixelGrid.id = "pixelgrid";
     for(let i = 0; i < squaresPerSide; i++)
     {
-        
-
         darkerArr[i] = [];
         row = document.createElement("div");
         row.style.display = "flex";
@@ -69,68 +80,12 @@ function makeGrid(squaresPerSide = 4)
         }
         pixelGrid.appendChild(row);
     }
+    body.appendChild(pixelGrid);
 }
-/*
-for(let i = 0; i < squaresPerSide; i++)
-    {
-        darkerArr[i] = [];
-        rowArr[i] = document.createElement("div");
-        rowArr[i].style.display = "flex";
-        
-        for(let j = 0; j < squaresPerSide; j++) 
-        {
-            darkerArr[i][j] = 0;
-            let pixel = document.createElement("div");
-            pixel.style.margin = spacing / 2 + "px";
-            pixel.style.padding = spacing + "px";
-            pixel.id = "pixel";
-            pixel.style.width = pixelLength + "px";
-            pixel.style.height = pixelLength + "px";
-            pixel.style.border = `${borderWidth}px solid black`;
-            pixel.textContent = darkerArr[i][j];
-            
-            pixel.addEventListener("mouseover", () => 
-            { 
-                pixel.style.backgroundColor =  getRandomRGB();
-                darkerArr[i][j] -= darkeningFactor;
-                pixel.textContent = darkerArr[i][j];
-            });
-
-            pixel.addEventListener("mouseout",  () => { pixel.style.backgroundColor = "rgb(" + (255 + darkerArr[i][j]) + "," + (255 + darkerArr[i][j]) + "," + (255 + darkerArr[i][j]) +  ")"; });
-            rowArr[i].appendChild(pixel);
-        }
-*/
 
 makeGrid();
 
 
-resetButton.addEventListener("click", () => {
-
-    deleteCurrentGrid();
-    /*
-    let num = window.prompt("yo sexy");
-    num = parseFloat(num);
-    if(typeof num == "number")
-    {
-        if(num > 100)
-            {makeGrid(100);}
-        else
-            makeGrid(num);
-    }
-    else
-        makeGrid();
-
-    rowArr.forEach((row)=> 
-        {body.appendChild(row);}
-    );*/
-});
-
-body.appendChild(resetButton);
-body.appendChild(pixelGrid);
-
-// rowArr.forEach((row)=> 
-//     {body.appendChild(row);}
-// );
 
 /*
 Follow the instructions atop Odin’s Recipes project to set up a Git repository for this project.
