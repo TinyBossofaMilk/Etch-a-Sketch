@@ -98,16 +98,7 @@ inline-block
 flexbox
 CSS Grid
 
-Be careful with borders and margins, as they can adjust the size of the squares!
-“OMG, why isn’t my grid being created???”
-Did you link your CSS stylesheet?
-Open your browser’s developer tools.
-Check if there are any errors in the JavaScript console.
-Check your “elements” pane to see if the elements have actually shown up but are somehow hidden.
-Go willy-nilly and add console.log statements in your JavaScript to see if it’s actually being loaded.
-Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
-Hint: “Hovering” is what happens when your mouse enters a div and ends when your mouse leaves it. 
-You can set up event listeners for either of those events as a starting point.
+
 
 There are multiple ways to change the color of the divs, including:
 adding a new class to the div.
@@ -121,4 +112,10 @@ changing the total amount of pixels used.
 (Optional): Instead of just changing the color of a square from black to white (for example), 
 have each pass through with the mouse change it to a completely random RGB value. 
 Then try having each pass just add another 10% of black to it so that only after 10 passes is the square completely black.
-Push your project to GitHub!*/
+Push your project to GitHub!
+
+TODO: Make squares flex dimensions
+
+
+*/
+
